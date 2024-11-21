@@ -74,4 +74,49 @@ public class Member {
     }
 }
 
+public class Library {
+    private List<Book> books = new ArrayList<>();
+    private List<Member> members = new ArrayList<>();
+
+    // متد برای اضافه کردن کتاب
+    public void addBook(Book book) {
+        books.add(book);
+    }
+
+    // متد برای حذف کتاب
+    public void removeBook(Book book) {
+        books.remove(book);
+    }
+
+    // متد برای اضافه کردن عضو
+    public void addMember(Member member) {
+        members.add(member);
+    }
+
+    // متد برای نمایش لیست کتاب های موجود
+    public void displayBooks() {
+        for (Book book : books) {
+            System.out.println(book.getTitle() + " - " + book.getAuthor());
+        }
+    }
+
+    // متد برای قرض دادن کتاب
+    public void lendBook(Book book, Member member) {
+        if (book.isAvailable()) {
+            member.borrowBook(book);
+            book.setAvailable(false);
+            System.out.println("کتاب با موفقیت به امانت داده شد");
+        } else {
+            System.out.println("موجود نیست");
+        }
+    }
+
+    // متد برای برگرداندن کتاب
+    public void returnBook(Book book, Member member) {
+        member.returnBook(book);
+        book.setAvailable(true);
+        System.out.println("کتاب با موفقیت برگردانده شد");
+    }
+}
+
 
